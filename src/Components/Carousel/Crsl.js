@@ -26,8 +26,8 @@ export const Crsl = () => {
               </div>
             </li>
             <input type="radio" name="radio-buttons" id="img-2" />
-            <li className="slide-container">
-              <div className="slide-image new-css">
+            <li className="slide-container new-css">
+              <div className="slide-image">
                 <img src="https://content.r9cdn.net/rimg/dimg/db/02/06b291e8-city-14912-171317ad83a.jpg?width=1750&height=1000&xhint=3040&yhint=2553&crop=true" />
               </div>
               <div className="carousel-controls">
