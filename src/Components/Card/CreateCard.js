@@ -1,27 +1,55 @@
 import React from "react";
 import Footer from "../Footer/Footer";
+import { useRef } from "react";
 import "./CreateCard.css";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import {
-//   solid,
-//   regular,
-//   brands,
-// } from "@fortawesome/fontawesome-svg-core/import.macro"; // <-- import styles to be used
 
-import ReactDOM from "react-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCoffee, faEnvelope } from "@fortawesome/free-solid-svg-icons";
-
-export const CreateCard = () => {
-  const element = <FontAwesomeIcon icon={faEnvelope} />;
-
+export const CreateCard = (props) => {
+  const business_titleRef = useRef();
+  const tag_lineRef = useRef();
+  const addressRef = useRef();
+  const tagesRef = useRef();
+  const google_linkRef = useRef();
+  const contact_numberRef = useRef();
+  const whatsapp_noRef = useRef();
+  const facebook_urlRef = useRef();
+  const other_social_mediaRef = useRef();
+  const imageRef = useRef();
+  const descriptionRef = useRef();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    fetch("https://narwana-city.herokuapp.com/", {
+      method: "POST",
+      body: JSON.stringify({
+        id: Math.random().toString(36).slice(2),
+        business_title: business_titleRef.current.value,
+        tag_line: tag_lineRef.current.value,
+        address: addressRef.current.value,
+        tages: tagesRef.current.value,
+        google_link: google_linkRef.current.value,
+        contact_number: contact_numberRef.current.value,
+        whatsapp_no: whatsapp_noRef.current.value,
+        facebook_url: facebook_urlRef.current.value,
+        other_social_media: other_social_mediaRef.current.value,
+        image: imageRef.current.value,
+        description: descriptionRef.current.value,
+      }),
+      headers: {
+        "Content-type": "application/json;",
+      },
+    })
+      .then((response) => console.log(response.json()))
+      .catch((err) => {
+        console.log(err.message);
+      });
+    // console.log(business_titleRef.current.value);
+  };
   return (
     <div>
       <div>
         <div className="form_wrapper">
           <div className="form_container">
             <div className="title_container">
-              <h2>Create Your Business Card</h2>
+              <h2>Create Your Business Card{props.data}</h2>
             </div>
             <div className="row clearfix">
               <div className>
@@ -34,6 +62,7 @@ export const CreateCard = () => {
                     <input
                       type="text"
                       name="business_title"
+                      ref={business_titleRef}
                       placeholder="Business Title*"
                       required
                     />
@@ -46,6 +75,7 @@ export const CreateCard = () => {
                     <input
                       type="text"
                       name="tag_line"
+                      ref={tag_lineRef}
                       placeholder="Tag Line*"
                       required
                     />
@@ -55,7 +85,12 @@ export const CreateCard = () => {
                     <span>
                       <i aria-hidden="true" className="fa fa-lock" />
                     </span> */}
-                    <input type="text" name="address" placeholder="Address" />
+                    <input
+                      type="text"
+                      name="address"
+                      ref={addressRef}
+                      placeholder="Address"
+                    />
                   </div>
                   <div className="row clearfix">
                     <div className="col_half">
@@ -64,7 +99,12 @@ export const CreateCard = () => {
                         <span>
                           <i aria-hidden="true" className="fa fa-user" />
                         </span> */}
-                        <input type="text" name="tags" placeholder="Tags*" />
+                        <input
+                          type="text"
+                          name="tags"
+                          ref={tagesRef}
+                          placeholder="Tags*"
+                        />
                       </div>
                     </div>
                     <div className="col_half">
@@ -77,6 +117,7 @@ export const CreateCard = () => {
                           type="text"
                           name="google_link"
                           placeholder="Google Link"
+                          ref={google_linkRef}
                         />
                       </div>
                     </div>
@@ -91,6 +132,7 @@ export const CreateCard = () => {
                         <input
                           type="text"
                           name="contact_number"
+                          ref={contact_numberRef}
                           placeholder="Contact Number*"
                         />
                       </div>
@@ -104,6 +146,7 @@ export const CreateCard = () => {
                         <input
                           type="text"
                           name="whatsapp_number"
+                          ref={whatsapp_noRef}
                           placeholder="Whatsapp Number*"
                           required
                         />
@@ -120,6 +163,7 @@ export const CreateCard = () => {
                         <input
                           type="text"
                           name="facebook_url"
+                          ref={facebook_urlRef}
                           placeholder="Facebook URL"
                         />
                       </div>
@@ -133,6 +177,7 @@ export const CreateCard = () => {
                         <input
                           type="text"
                           name="other_social_media_link"
+                          ref={other_social_mediaRef}
                           placeholder="Other Social Media Linnk"
                         />
                       </div>
@@ -160,7 +205,8 @@ export const CreateCard = () => {
                         <input
                           type="file"
                           id="file-input"
-                          name="ImageStyle"
+                          name="image"
+                          ref={imageRef}
                           placeholder="Upload Image"
                         />
                       </div>
@@ -190,6 +236,7 @@ export const CreateCard = () => {
                     <input
                       type="text"
                       name="description"
+                      ref={descriptionRef}
                       placeholder="Description"
                     />
                   </div>
@@ -209,6 +256,7 @@ export const CreateCard = () => {
                     className="button"
                     type="submit"
                     defaultValue="Register"
+                    onClick={handleSubmit}
                   />
                 </form>
               </div>

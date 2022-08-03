@@ -2,7 +2,8 @@ import React from "react";
 import img1 from "./img/pr.jpeg";
 import "./FlipCard.css";
 
-export const FlipCard = () => {
+export const FlipCard = (props) => {
+  console.log(props);
   return (
     <div className="flip-card">
       <div className="flip-card-inner">
@@ -14,8 +15,8 @@ export const FlipCard = () => {
           />
         </div>
         <div className="flip-card-back">
-          <h4>Business Title </h4>
-          <p>Tag Line</p>
+          <h4>{props.business_title} </h4>
+          <p>{props.tag_line}</p>
 
           <input type="button" value="Know more" />
         </div>

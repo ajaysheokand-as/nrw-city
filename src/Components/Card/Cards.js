@@ -5,15 +5,20 @@ import { FlipCard } from "./FlipCard";
 import { FlipCard2 } from "./FlipCard2";
 import img1 from "./img/pr.jpeg";
 
-export const Cards = () => {
+export const Cards = (props) => {
+  console.log(props.data);
   return (
     <div className={Classes.card}>
       <Container>
         <Row xs={1} md={4} className="g-4">
-          {Array.from({ length: 8 }).map((_, idx) => (
-            <Col>
-              <FlipCard />
-              {/* <Card>
+          {props.data
+            ? props.data.map((d, i) => (
+                <Col>
+                  <FlipCard
+                    business_title={d.business_title}
+                    tag_line={d.tag_line}
+                  />
+                  {/* <Card>
                 <Card.Img variant="top" src={img1} />
                 <Card.Body>
                   <Card.Title>Card title</Card.Title>
@@ -24,8 +29,9 @@ export const Cards = () => {
                   </Card.Text>
                 </Card.Body>
               </Card> */}
-            </Col>
-          ))}
+                </Col>
+              ))
+            : "Loading..."}
         </Row>
       </Container>
     </div>
