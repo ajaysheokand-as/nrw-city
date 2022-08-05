@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import Footer from "../Footer/Footer";
 import { useRef } from "react";
 import "./CreateCard.css";
+import Constant from "../../Modules/Constant";
+import axios from "axios";
 
 export const CreateCard = (props) => {
+  const [selectedFile, setSelectedFile] = useState();
+
   const business_titleRef = useRef();
   const tag_lineRef = useRef();
   const addressRef = useRef();
@@ -15,16 +19,16 @@ export const CreateCard = (props) => {
   const other_social_mediaRef = useRef();
   const imageRef = useRef();
   const descriptionRef = useRef();
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch("https://narwana-city.herokuapp.com/", {
+    fetch(Constant.url, {
       method: "POST",
       body: JSON.stringify({
-        id: Math.random().toString(36).slice(2),
         business_title: business_titleRef.current.value,
         tag_line: tag_lineRef.current.value,
         address: addressRef.current.value,
-        tages: tagesRef.current.value,
+        tags: tagesRef.current.value,
         google_link: google_linkRef.current.value,
         contact_number: contact_numberRef.current.value,
         whatsapp_no: whatsapp_noRef.current.value,
@@ -34,14 +38,34 @@ export const CreateCard = (props) => {
         description: descriptionRef.current.value,
       }),
       headers: {
-        "Content-type": "application/json;",
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
     })
       .then((response) => console.log(response.json()))
       .catch((err) => {
-        console.log(err.message);
+        console.log(err);
       });
     // console.log(business_titleRef.current.value);
+  };
+
+  const onChangeFile = (e) => {
+    setSelectedFile(e.target.files[0]);
+  };
+
+  const onUploadFile = () => {
+    // Create an object of formData
+    const formData = new FormData();
+
+    // Update the formData object
+    formData.append("myFile", selectedFile, selectedFile.name);
+
+    // Details of the uploaded file
+    console.log(selectedFile);
+
+    // Request made to the backend api
+    // Send formData object
+    axios.post("api/uploadfile", formData);
   };
   return (
     <div>
@@ -130,7 +154,7 @@ export const CreateCard = (props) => {
                           <i aria-hidden="true" className="fa fa-user" />
                         </span> */}
                         <input
-                          type="text"
+                          type="number"
                           name="contact_number"
                           ref={contact_numberRef}
                           placeholder="Contact Number*"
@@ -144,7 +168,7 @@ export const CreateCard = (props) => {
                           <i aria-hidden="true" className="fa fa-user" />
                         </span> */}
                         <input
-                          type="text"
+                          type="number"
                           name="whatsapp_number"
                           ref={whatsapp_noRef}
                           placeholder="Whatsapp Number*"
@@ -178,7 +202,7 @@ export const CreateCard = (props) => {
                           type="text"
                           name="other_social_media_link"
                           ref={other_social_mediaRef}
-                          placeholder="Other Social Media Linnk"
+                          placeholder="Other Social Media Link"
                         />
                       </div>
                     </div>
@@ -206,9 +230,13 @@ export const CreateCard = (props) => {
                           type="file"
                           id="file-input"
                           name="image"
+                          onChange={onChangeFile}
                           ref={imageRef}
                           placeholder="Upload Image"
                         />
+                        {selectedFile && (
+                          <button onClick={onUploadFile}>Upload!</button>
+                        )}
                       </div>
                     </div>
                   </div>

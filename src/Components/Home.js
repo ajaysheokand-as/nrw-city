@@ -4,20 +4,29 @@ import { Nrw } from "./Nrw/Nrw";
 import { Cards } from "./Card/Cards";
 import Footer from "./Footer/Footer";
 import { Crsl } from "./Carousel/Crsl";
-import jsonData from "../data/data.json";
+import axios from "axios";
+import Constant from "../Modules/Constant";
 
 export const Home = () => {
   const [allCards, setAllCards] = useState();
-  console.log(jsonData.all_cards);
+
   useEffect(() => {
-    setAllCards(jsonData);
+    axios
+      .get(Constant.url)
+      .then((res) => {
+        setAllCards(res.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   }, []);
   return (
     <div>
       <Crsl />
       <Trending />
       <Nrw />
-      <Cards data={jsonData.all_cards} />
+
+      <Cards data={allCards} />
       <Footer />
     </div>
   );

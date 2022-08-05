@@ -3,7 +3,7 @@ import img1 from "./img/pr.jpeg";
 import "./FlipCard.css";
 
 export const FlipCard = (props) => {
-  console.log(props);
+  // console.log(props);
   return (
     <div className="flip-card">
       <div className="flip-card-inner">
