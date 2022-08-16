@@ -4,14 +4,14 @@
     /* margin-right: 5%; */
    
     @media (max-width:800px){
-        height:300px !important
+        height:200px !important
     }
 }
 
 ul.slides {
     display: block;
     position: relative;
-    height: 600px;
+    height: 400px;
     margin: 0;
     padding: 0;
     overflow: hidden;
@@ -60,7 +60,7 @@ ul.slides input {
 
 .new-css{
     @media screen  (max-width:800px){
-     height:300px   
+     height:200px  
     }
 }
 
@@ -71,7 +71,7 @@ ul.slides input {
     right: 0;
     z-index: 999;
     font-size: 100px;
-    line-height: 600px;
+    line-height: 400px;
     color: #fff;
 }
 

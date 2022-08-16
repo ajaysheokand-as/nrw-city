@@ -5,6 +5,7 @@ import { Cards } from "./Card/Cards";
 import Footer from "./Footer/Footer";
 import { Crsl } from "./Carousel/Crsl";
 import jsonData from "../data/data.json";
+import { CustomCard } from "./Card/CustomCard";
 
 export const Home = () => {
   const [allCards, setAllCards] = useState();
@@ -17,6 +18,7 @@ export const Home = () => {
       <Crsl />
       <Trending />
       <Nrw />
+      {/* <CustomCard /> */}
       <Cards data={jsonData.all_cards} />
       <Footer />
     </div>

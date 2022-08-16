@@ -8,27 +8,25 @@ import { Home } from "./Home";
 import { ContactUs } from "./ContactUs/ContactUs";
 import { useState } from "react";
 import { Map } from "./Map/Map";
+import { Icon } from "react-icons-kit";
+import { home } from "react-icons-kit/fa/home";
+import { mapMarker } from "react-icons-kit/fa/mapMarker";
+import { plus } from "react-icons-kit/fa/plus";
+import { phone } from "react-icons-kit/fa/phone";
 // import jsonData from "../data/data.json";
 
 export default function Header(props) {
   const [isAdmin, setIsAdmin] = useState(true);
   const [isLogin, setIsLogin] = useState(false);
-  // const [allData, setAllData] = useState({});
-
-  // console.log(jsonData.all_cards);
-
-  // useEffect(() => {
-  //   setAllData(jsonData.all_cards);
-  // }, []);
-
-  // console.log(allData);
   return (
     <Router>
       {
         <div>
           <Navbar bg="light" expand="lg">
             <Container fluid>
-              <Navbar.Brand href="#">Cloud City</Navbar.Brand>
+              <Navbar.Brand href="#">
+                <b>Cloud City </b>
+              </Navbar.Brand>
               <Navbar.Toggle aria-controls="navbarScroll" />
               <Navbar.Collapse id="navbarScroll">
                 <Nav
@@ -37,18 +35,27 @@ export default function Header(props) {
                   navbarScroll
                 >
                   <Nav.Link as={Link} to="/Home">
-                    Home
+                    {/* <Icon icon={home} className="p-1" /> */}
+                    <b className="p-2">
+                      {" "}
+                      <Icon icon={home} /> Home
+                    </b>
                   </Nav.Link>
                   {/* <Nav.Link as={Link} to="/Home">
                     Gallery
                   </Nav.Link> */}
                   <Nav.Link as={Link} to="/Map">
-                    Map
+                    <b className="p-2">
+                      {" "}
+                      <Icon icon={mapMarker} /> Map
+                    </b>
                   </Nav.Link>
                   {isAdmin ? (
                     <>
                       <Nav.Link as={Link} to="/CreateCard">
-                        Create Card
+                        <b className="p-2">
+                          <Icon icon={plus} /> Create Card
+                        </b>
                       </Nav.Link>
                       {/* <Nav.Link as={Link} to="/R_Card">
                         Modify
@@ -59,7 +66,10 @@ export default function Header(props) {
                     About Us
                   </Nav.Link> */}
                   <Nav.Link as={Link} to="/Contact">
-                    Contact Us
+                    <b className="p-2">
+                      <Icon icon={phone} />
+                      Contact Us
+                    </b>
                   </Nav.Link>
                   {/* <NavDropdown title="Link" id="navbarScrollingDropdown">
                 <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
@@ -86,16 +96,16 @@ export default function Header(props) {
             </Form> */}
                 {isLogin ? (
                   <Nav.Link as={Link} to="/Login">
-                    Logout
+                    <b> Logout </b>
                   </Nav.Link>
                 ) : (
                   <Nav.Link as={Link} to="/Login">
-                    Sign In
+                    <b> Sign In </b>
                   </Nav.Link>
                 )}
                 {isAdmin ? (
                   <Nav.Link as={Link} to="/CreateCard">
-                    Register
+                    <b> Register </b>
                   </Nav.Link>
                 ) : null}
               </Navbar.Collapse>

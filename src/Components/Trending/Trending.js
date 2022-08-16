@@ -5,11 +5,11 @@ import Classes from "./Trending.module.css";
 
 export const Trending = () => {
   return (
-    <div>
+    <div className="border border-1 p-3 mb-5 bg-light rounded">
       <div className={Classes.trendingTitile}>
-        <b>Top Category</b>
+        <span>Top Category</span>
       </div>
-      <hr></hr>
+
       <Ticker className={Classes.ticker}>
         {({ index }) => (
           <>
@@ -19,7 +19,6 @@ export const Trending = () => {
           </>
         )}
       </Ticker>
-      <hr></hr>
     </div>
   );
 };

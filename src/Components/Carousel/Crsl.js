@@ -6,7 +6,7 @@ export const Crsl = () => {
   return (
     <Container>
       <Row xs={1} md={12} className="g-4">
-        <div>
+        <Col>
           <div className="carousel">
             <ul className="slides">
               <input
@@ -75,7 +75,7 @@ export const Crsl = () => {
               </div>
             </ul>
           </div>
-        </div>
+        </Col>
       </Row>
     </Container>
   );
